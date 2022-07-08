@@ -18,22 +18,7 @@ namespace DAL
 			List<Employee> employees = new List<Employee>();
 			IDbConnection conn = new MySqlConnection(conenctionString);
 			try
-			{
-				conn.Open();
-				string query = "SELECT * From emp";
-				IDbCommand cmd = new MySqlCommand(query, conn as MySqlConnection);
-				cmd.CommandType = CommandType.Text;   // 
-				IDataReader reader = cmd.ExecuteReader();  //ResultSet
-				while (reader.Read())
-				{
-					Employee emp = new Employee();
-					emp.ID = int.Parse(reader["EMPNO"].ToString()); 
-					emp.Designation = reader["JOB"].ToString();
-					emp.Salary = double.Parse(reader["SAL"].ToString());
-					employees.Add(emp);
-				}
-				reader.Close();
-			}
+			
 			catch (MySqlException excpetion)
 			{
 				string error = excpetion.Message;
